@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.transport.mapper.UserManageMapper">
+    <!--人员添加-->
+    <insert id="addOrder">
+        <selectKey keyProperty="transportUser.guid" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO transport_user (
+        user_name,
+        number,
+        com_id,
+        dep_id,
+        add_user_id,
+        add_user,
+        add_time,
+        mod_user_id,
+        mod_user,
+        mod_time,
+        delete_flag
+        )
+        VALUES
+        (
+        #{transportUser.userName},
+        #{transportUser.number},
+        #{transportUser.comId},
+        #{transportUser.depId},
+        #{transportUser.addUserId},
+        #{transportUser.addUser},
+        #{transportUser.addTime},
+        #{transportUser.modUserId},
+        #{transportUser.modUser},
+        #{transportUser.modTime},
+        #{transportUser.deleteFlag}
+        )
+    </insert>
+    <!--修改人员-->
+    <update id="updateUser">
+        UPDATE transport_user
+        SET
+         user_name =  #{transportUser.userName},
+         number =  #{transportUser.number},
+         com_id =  #{transportUser.comId},
+         dep_id =  #{transportUser.depId},
+         mod_user_id =  #{transportUser.modUserId},
+         mod_user =  #{transportUser.modUser},
+         mod_time =  #{transportUser.modTime}
+        WHERE
+            guid = #{transportUser.guid}
+    </update>
+
+    <update id="deleteUser">
+        UPDATE transport_user
+        SET
+        delete_flag = true,
+        mod_user_id = 0,
+        mod_user = "admin",
+        mod_time = now()
+        WHERE
+        guid in
+        <foreach collection="guidList" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </update>
+    <select id="getUserList" resultType="com.cn.transport.dto.info.vo.GetUserListVO">
+        SELECT
+            u.guid,
+            u.user_name AS userName,
+            c.company,
+            d.department,
+            u.number
+        FROM
+            transport_user u
+        INNER JOIN transport_company c ON u.com_id = c.guid
+        INNER JOIN transport_department d ON u.dep_id = d.guid
+        WHERE
+            u.delete_flag = FALSE
+    </select>
+    <select id="getUserInfo" resultType="com.cn.transport.dto.info.vo.GetUserListVO">
+        SELECT
+            u.guid,
+            u.user_name AS userName,
+            c.guid as comId,
+            c.company,
+            d.guid as depId,
+            d.department,
+            u.number
+        FROM
+            transport_user u
+        INNER JOIN transport_company c ON u.com_id = c.guid
+        INNER JOIN transport_department d ON u.dep_id = d.guid
+        WHERE
+            u.delete_flag = FALSE AND u.guid=#{guid}
+    </select>
+    <select id="getComList" resultType="com.cn.transport.dto.info.vo.GetComListVO">
+        SELECT
+            c.guid as comId,
+            c.company
+        FROM
+            transport_company c
+        WHERE
+            c.delete_flag = FALSE
+    </select>
+    <select id="getDepList" resultType="com.cn.transport.dto.info.vo.GetDepListVO">
+        SELECT
+            d.guid as depId,
+            d.department
+        FROM
+            transport_department d
+        WHERE
+            d.delete_flag = FALSE
+    </select>
+</mapper>

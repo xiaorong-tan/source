@@ -43,9 +43,9 @@ public class UserManageController {
      *
      * @return
      */
-    @GetMapping(value = "/index2")
+    @GetMapping(value = "/goUserManage")
     public String get() {
-        return "index";
+        return "userManage";
     }
 
 

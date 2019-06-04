@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.transport.mapper.BigManageMapper">
+    <insert id="add">
+        INSERT INTO transport_manage (
+        strandard,
+        add_user_id,
+        add_user,
+        add_time,
+        mod_user_id,
+        mod_user,
+        mod_time,
+        delete_flag
+        )
+        VALUES
+        (
+        #{transportManage.strandard},
+        #{transportManage.addUserId},
+        #{transportManage.addUser},
+        #{transportManage.addTime},
+        #{transportManage.modUserId},
+        #{transportManage.modUser},
+        #{transportManage.modTime},
+        #{transportManage.deleteFlag}
+        )
+    </insert>
+
+    <update id="update">
+        UPDATE transport_manage
+        SET
+         strandard =  #{transportManage.strandard},
+         mod_user_id =  #{transportManage.modUserId},
+         mod_user =  #{transportManage.modUser},
+         mod_time =  #{transportManage.modTime}
+        WHERE
+            id = #{transportManage.id}
+    </update>
+
+    <update id="del">
+        UPDATE transport_manage
+        SET
+         delete_flag =  #{transportManage.deleteFlag},
+         mod_user_id =  #{transportManage.modUserId},
+         mod_user =  #{transportManage.modUser},
+         mod_time =  #{transportManage.modTime}
+        WHERE
+            id = #{transportManage.id}
+    </update>
+
+    <select id="getList" resultType="com.cn.transport.dto.info.vo.GetBigManageListVO">
+        SELECT
+            id,
+            strandard AS strandard
+        FROM
+            transport_manage
+        WHERE
+            delete_flag = FALSE
+    </select>
+
+    <select id="getInfo" resultType="com.cn.transport.dto.info.vo.GetBigManageListVO">
+        SELECT
+        id,
+             strandard AS strandard
+        FROM
+            transport_manage
+        WHERE
+            delete_flag = FALSE AND id=#{id}
+    </select>
+
+</mapper>

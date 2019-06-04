@@ -108,7 +108,7 @@
         </div>
     </div>
 </div>
- /# sidebar
+/# sidebar
 
 <div class="header">
     <div class="container-fluid">
@@ -134,7 +134,8 @@
                                         <li>
                                             <a href="#">
                                                 <img alt=""
-                                                     class="pull-left m-r-10 avatar-img" src="/static/assets/images/avatar/3.jpg"/>
+                                                     class="pull-left m-r-10 avatar-img"
+                                                     src="/static/assets/images/avatar/3.jpg"/>
                                                 <div class="notification-content">
                                                     <small class="notification-timestamp pull-right">02:34 PM</small>
                                                     <div class="notification-heading">Mr. John</div>
@@ -145,7 +146,8 @@
                                         <li>
                                             <a href="#">
                                                 <img alt=""
-                                                     class="pull-left m-r-10 avatar-img" src="/static/assets/images/avatar/3.jpg"/>
+                                                     class="pull-left m-r-10 avatar-img"
+                                                     src="/static/assets/images/avatar/3.jpg"/>
                                                 <div class="notification-content">
                                                     <small class="notification-timestamp pull-right">02:34 PM</small>
                                                     <div class="notification-heading">Mariam</div>
@@ -156,7 +158,8 @@
                                         <li>
                                             <a href="#">
                                                 <img alt=""
-                                                     class="pull-left m-r-10 avatar-img" src="/static/assets/images/avatar/3.jpg"/>
+                                                     class="pull-left m-r-10 avatar-img"
+                                                     src="/static/assets/images/avatar/3.jpg"/>
                                                 <div class="notification-content">
                                                     <small class="notification-timestamp pull-right">02:34 PM</small>
                                                     <div class="notification-heading">Tasnim</div>
@@ -169,7 +172,8 @@
                                         <li>
                                             <a href="#">
                                                 <img alt=""
-                                                     class="pull-left m-r-10 avatar-img" src="/static/assets/images/avatar/3.jpg"/>
+                                                     class="pull-left m-r-10 avatar-img"
+                                                     src="/static/assets/images/avatar/3.jpg"/>
                                                 <div class="notification-content">
                                                     <small class="notification-timestamp pull-right">02:34 PM</small>
                                                     <div class="notification-heading">Mr. John</div>
@@ -202,7 +206,8 @@
                                         <li class="notification-unread">
                                             <a href="#">
                                                 <img alt=""
-                                                     class="pull-left m-r-10 avatar-img" src="/static/assets/images/avatar/1.jpg"/>
+                                                     class="pull-left m-r-10 avatar-img"
+                                                     src="/static/assets/images/avatar/1.jpg"/>
                                                 <div class="notification-content">
                                                     <small class="notification-timestamp pull-right">02:34 PM</small>
                                                     <div class="notification-heading">Michael Qin</div>
@@ -215,7 +220,8 @@
                                         <li class="notification-unread">
                                             <a href="#">
                                                 <img alt=""
-                                                     class="pull-left m-r-10 avatar-img" src="/static/assets/images/avatar/2.jpg"/>
+                                                     class="pull-left m-r-10 avatar-img"
+                                                     src="/static/assets/images/avatar/2.jpg"/>
                                                 <div class="notification-content">
                                                     <small class="notification-timestamp pull-right">02:34 PM</small>
                                                     <div class="notification-heading">Mr. John</div>
@@ -228,7 +234,8 @@
                                         <li>
                                             <a href="#">
                                                 <img alt=""
-                                                     class="pull-left m-r-10 avatar-img" src="/static/assets/images/avatar/3.jpg"/>
+                                                     class="pull-left m-r-10 avatar-img"
+                                                     src="/static/assets/images/avatar/3.jpg"/>
                                                 <div class="notification-content">
                                                     <small class="notification-timestamp pull-right">02:34 PM</small>
                                                     <div class="notification-heading">Michael Qin</div>
@@ -241,7 +248,8 @@
                                         <li>
                                             <a href="#">
                                                 <img alt=""
-                                                     class="pull-left m-r-10 avatar-img" src="/static/assets/images/avatar/2.jpg"/>
+                                                     class="pull-left m-r-10 avatar-img"
+                                                     src="/static/assets/images/avatar/2.jpg"/>
                                                 <div class="notification-content">
                                                     <small class="notification-timestamp pull-right">02:34 PM</small>
                                                     <div class="notification-heading">Mr. John</div>
@@ -321,7 +329,8 @@
 
             <div class="panel-body" style="padding-bottom:0px;">
                 <div class="btn-group" id="toolbar">
-                    <button class="btn btn-default" data-target="#myModal" data-toggle="modal" id="btn_add" onclick="addButton()"
+                    <button class="btn btn-default" data-target="#myModal" data-toggle="modal" id="btn_add"
+                            onclick="addButton()"
                             type="button">
                         <span aria-hidden="true" class="glyphicon glyphicon-plus"></span>新增
                     </button>
@@ -433,7 +442,7 @@
         //初始化Table
         oTableInit.Init = function () {
             $('#tb_departments').bootstrapTable({
-                url: '/web/userManage/getUserList',         //请求后台的URL（*）
+                url: '/web/bigManage/getList',         //请求后台的URL（*）
                 method: 'post',                      //请求方式（*）
                 toolbar: '#toolbar',                //工具按钮用哪个容器
                 striped: true,                      //是否显示行间隔色
@@ -460,26 +469,17 @@
                 columns: [{
                     checkbox: true
                 }, {
-                    field: 'guid',
+                    field: 'id',
                     title: 'id',
                     visible: false
                 }, {
-                    field: 'userName',
-                    title: '姓名'
-                }, {
-                    field: 'number',
-                    title: '工号'
-                }, {
-                    field: 'company',
-                    title: '公司'
-                }, {
-                    field: 'department',
-                    title: '部门'
+                    field: 'strandard',
+                    title: '大项'
                 }, {
                     title: "操作",
                     formatter: function (value, row, index) {
-                        var e = '<a href="#" mce_href="#" data-target="#myModal1" data-toggle="modal" onclick="edit(\'' + row.guid + '\')">编辑</a> ';
-                        var d = '<a href="#" mce_href="#"  onclick="show_confirm(\'' + row.guid + '\')">删除</a>';
+                        var e = '<a href="#" mce_href="#" data-target="#myModal1" data-toggle="modal" onclick="edit(\'' + row.id + '\')">编辑</a> ';
+                        var d = '<a href="#" mce_href="#"  onclick="show_confirm(\'' + row.id + '\')">删除</a>';
                         return e + d;
                     }
                 }]
@@ -524,79 +524,41 @@
     function edit(id) {
 
         var jsona = {
-            "guid": id
+            "id": id
         };
         $.ajax({
-            url: "/web/userManage/getUserInfo",
+            url: "/web/bigManage/getInfo",
             async: true,
             type: "POST",
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(jsona),
             success: function (result) {
                 console.log(result);
-                $("#test1").html("<form id='updateForm'><table><tbody><tr style='padding: 10px;'><td style='width: 200px;height: 40px;'>姓名</td>" +
-                    "<td><input type='text' name='userName' style='width: 200px;height: 40px;' value='" + result.body.userName + "'>" +
-                    "<input type='text' name='guid' hidden='hidden'  value='" + result.body.guid + "'></td></tr><tr style='height: 20px;'></tr>" +
-                    "<tr style='padding: 10px;'><td style='width: 200px;height: 40px;'>工号</td><td>" +
-                    "<input type='text'name='number' style='width: 200px;height: 40px;' value='" + result.body.number + "'></td></tr><tr style='height: 20px;'></tr>" +
-                    "<tr style='padding: 10px;'><td style='width: 200px;height: 40px;'>公司</td><td>" +
-                    "<select name='comId' style='width: 200px;height: 40px;'><option  value='" + result.body.comId + "'>" +
-                    "" + result.body.company + "</option></select></td></tr><tr style='height: 20px;'></tr>" +
-                    "<tr style='padding: 10px;'><td style='width: 200px;height: 40px;'>部门</td><td>" +
-                    "<select name='depId' style='width: 200px;height: 40px;'><option  value='" + result.body.depId + "'>" +
-                    "" + result.body.department + "</option></select></td></tr><tr style='height: 20px;'></tr></tbody></table></table></form>");
+                $("#test1").html("<form id='updateForm'><table><tbody><tr style='padding: 10px;'><td style='width: 200px;height: 40px;'>大项</td>" +
+                    "<td><input type='text' name='strandard' style='width: 200px;height: 40px;' value='" + result.strandard + "'>" +
+                    "<input type='text' name='id' hidden='hidden'  value='" + result.id + "'></td></tr><tr style='height: 20px;'></tr>" +
+                    "<tr style='height: 20px;'></tr></tbody></table></table></form>");
             }
         });
     };
 
 
     function addButton() {
-        var jsona = {};
-        $.ajax({
-            url: "/web/userManage/getComList",
-            async: true,
-            type: "POST",
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(jsona),
-            success: function (result) {
-                console.log(result);
-                if (result.header.code == 10000) {
-                    $.ajax({
-                        url: "/web/userManage/getDepList",
-                        async: true,
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        data: JSON.stringify(jsona),
-                        success: function (res) {
-                            debugger
-                            if (res.header.code == 10000) {
-                                $("#test").html("<form id='addForm'><table><tbody><tr style='padding: 10px;'><td style='width: 200px;height: 40px;'>姓名</td>" +
-                                    "<td><input type='text' name='userName' style='width: 200px;height: 40px;' >" +
-                                    "</td></tr><tr style='height: 20px;'></tr>" +
-                                    "<tr style='padding: 10px;'><td style='width: 200px;height: 40px;'>工号</td><td>" +
-                                    "<input type='text'name='number' style='width: 200px;height: 40px;' ></td></tr><tr style='height: 20px;'></tr>" +
-                                    "<tr style='padding: 10px;'><td style='width: 200px;height: 40px;'>公司</td><td>" +
-                                    "<select name='comId' style='width: 200px;height: 40px;'><option  value='" + result.body[0].comId + "'>" +
-                                    "" + result.body[0].company + "</option></select></td></tr><tr style='height: 20px;'></tr>" +
-                                    "<tr style='padding: 10px;'><td style='width: 200px;height: 40px;'>部门</td><td>" +
-                                    "<select name='depId' style='width: 200px;height: 40px;'><option  value='" + res.body[0].depId + "'>" +
-                                    "" + res.body[0].department + "</option></select></td></tr><tr style='height: 20px;'></tr></tbody></table></table></form>");
-                            }
-                        }
-                    })
-                }
-            }
-        })
+
+        $("#test").html("<form id='addForm'><table><tbody><tr style='padding: 10px;'><td style='width: 200px;height: 40px;'>大项</td>" +
+            "<td><input type='text' name='strandard' style='width: 200px;height: 40px;' >" +
+            "</td></tr><tr style='height: 20px;'></tr>" +
+            "<tr style='height: 20px;'></tr></tbody></table></table></form>");
+
     };
 
     function del(id) {
-
-        var tempArr = [id];
+        var tempArr = id;
         var jsona = {
-            "body": {"guidList": tempArr}
+            "body": {"id": tempArr}
         };
         $.ajax({
-            url: "/web/userManage/deleteUser",
+            url: "/web/bigManage/delete",
             async: true,
             type: "POST",
             contentType: "application/json; charset=utf-8",
@@ -617,7 +579,7 @@
             formObject[item.name] = item.value;
         });
         $.ajax({
-            url: "/web/userManage/updateUser",
+            url: "/web/bigManage/update",
             async: true,
             type: "POST",
             contentType: "application/json; charset=utf-8",
@@ -633,14 +595,13 @@
     };
 
     function add() {
-        debugger
         var formObject = {};
         var formArray = $("#addForm").serializeArray();
         $.each(formArray, function (i, item) {
             formObject[item.name] = item.value;
         });
         $.ajax({
-            url: "/web/userManage/addUser",
+            url: "/web/bigManage/add",
             async: true,
             type: "POST",
             contentType: "application/json; charset=utf-8",
